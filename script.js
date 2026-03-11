@@ -239,8 +239,8 @@ if (form) {
 const backToTopBtn = document.getElementById("back-to-top");
 
 window.addEventListener("scroll", () => {
-  // Se rolar mais de 400px para baixo, mostra o botão
-  if (window.scrollY > 200) {
+  // Se rolar mais de 100px para baixo, mostra o botão
+  if (window.scrollY > 100) {
     backToTopBtn.classList.add("show");
   } else {
     backToTopBtn.classList.remove("show");
@@ -252,34 +252,4 @@ backToTopBtn.addEventListener("click", () => {
     top: 0,
     behavior: "smooth" // Sobe de um jeito suave, não de uma vez
   });
-});
-
-// Monitor de estado dentro do seu <script type="module">
-onAuthStateChanged(auth, (user) => {
-  const btnLogin = document.getElementById('btn-login');
-  const userProfile = document.getElementById('user-profile');
-  
-  if (user) {
-    btnLogin.style.display = 'none';
-    userProfile.style.display = 'flex';
-    document.getElementById('user-name').innerText = "Olá, " + user.displayName.split(' ')[0];
-    document.getElementById('user-photo').src = user.photoURL;
-  } else {
-    btnLogin.style.display = 'flex';
-    userProfile.style.display = 'none';
-  }
-});
-
-const trigger = document.getElementById('profile-trigger');
-const menu = document.getElementById('dropdown-menu');
-
-// Abre/Fecha ao clicar na foto ou nome
-trigger.addEventListener('click', (e) => {
-  e.stopPropagation(); // Impede de fechar na hora que clica
-  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-});
-
-// Fecha se clicar em qualquer outro lugar da tela
-document.addEventListener('click', () => {
-  menu.style.display = 'none';
 });
